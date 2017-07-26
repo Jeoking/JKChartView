@@ -17,6 +17,9 @@
 		3C2013921F279445007F406E /* JKChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2013891F279445007F406E /* JKChartView.m */; };
 		3C2013931F279445007F406E /* JKLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C20138C1F279445007F406E /* JKLineView.m */; };
 		3C2013941F279445007F406E /* JKProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C20138F1F279445007F406E /* JKProgressView.m */; };
+		77EF83A91F28751400D237B9 /* screenshot_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 77EF83A61F28751400D237B9 /* screenshot_1.png */; };
+		77EF83AA1F28751400D237B9 /* screenshot_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 77EF83A71F28751400D237B9 /* screenshot_2.png */; };
+		77EF83AB1F28751400D237B9 /* screenshot_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 77EF83A81F28751400D237B9 /* screenshot_3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		3C20138C1F279445007F406E /* JKLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKLineView.m; sourceTree = "<group>"; };
 		3C20138E1F279445007F406E /* JKProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKProgressView.h; sourceTree = "<group>"; };
 		3C20138F1F279445007F406E /* JKProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKProgressView.m; sourceTree = "<group>"; };
+		77EF83A61F28751400D237B9 /* screenshot_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_1.png; sourceTree = "<group>"; };
+		77EF83A71F28751400D237B9 /* screenshot_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_2.png; sourceTree = "<group>"; };
+		77EF83A81F28751400D237B9 /* screenshot_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 		3C20136A1F27928B007F406E /* JKChartView */ = {
 			isa = PBXGroup;
 			children = (
+				77EF83A51F28751400D237B9 /* ScreenShots */,
 				3C2013821F279445007F406E /* JKChartView */,
 				3C20136E1F27928B007F406E /* AppDelegate.h */,
 				3C20136F1F27928B007F406E /* AppDelegate.m */,
@@ -133,6 +140,16 @@
 			path = JKProgressView;
 			sourceTree = "<group>";
 		};
+		77EF83A51F28751400D237B9 /* ScreenShots */ = {
+			isa = PBXGroup;
+			children = (
+				77EF83A61F28751400D237B9 /* screenshot_1.png */,
+				77EF83A71F28751400D237B9 /* screenshot_2.png */,
+				77EF83A81F28751400D237B9 /* screenshot_3.png */,
+			);
+			path = ScreenShots;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,7 +207,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EF83A91F28751400D237B9 /* screenshot_1.png in Resources */,
 				3C20137B1F27928B007F406E /* LaunchScreen.storyboard in Resources */,
+				77EF83AA1F28751400D237B9 /* screenshot_2.png in Resources */,
+				77EF83AB1F28751400D237B9 /* screenshot_3.png in Resources */,
 				3C2013781F27928B007F406E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +368,7 @@
 				3C2013811F27928B007F406E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
