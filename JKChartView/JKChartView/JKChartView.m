@@ -275,15 +275,13 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
  */
 - (void)setYMaxValue:(double)maxValue {
     _yMaxValue = maxValue;
-    if (maxValue > 10000 && maxValue <100000) {
-        maxValue = self.yLabelViews.count + 1;
-    } else if (maxValue > 100000) {
+    if (maxValue > 10000) {
         maxValue = maxValue / 10000;
     }
-    NSInteger yDivideValue = maxValue/(self.yLabelViews.count + 1);
+    double yDivideValue = maxValue/(self.yLabelViews.count + 1);
     for (int i = 0; i < self.yLabelViews.count; i++) {
         UILabel *yLabel = self.yLabelViews[self.yLabelViews.count - 1 - i];
-        yLabel.text = [NSString stringWithFormat:@"%ld", yDivideValue*(i+1)];
+        yLabel.text = [NSString stringWithFormat:@"%.1f", yDivideValue*(i+1)];
     }
 }
 
