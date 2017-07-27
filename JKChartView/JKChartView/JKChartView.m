@@ -263,11 +263,6 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     NSInteger maxLen = [self getInterLength:(NSInteger)yMaxValue];
     NSInteger firstNum = (NSInteger)yMaxValue/pow(10, maxLen - 1);
     NSInteger maxValue = (firstNum + 1) * pow(10, maxLen - 1);
-    if (maxValue > 10000 && maxValue <100000) {
-        maxValue = self.yLabelViews.count + 1;
-    } else if (maxValue > 100000) {
-        maxValue = maxValue / 10000;
-    }
     return maxValue;
 }
 
@@ -280,6 +275,11 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
  */
 - (void)setYMaxValue:(double)maxValue {
     _yMaxValue = maxValue;
+    if (maxValue > 10000 && maxValue <100000) {
+        maxValue = self.yLabelViews.count + 1;
+    } else if (maxValue > 100000) {
+        maxValue = maxValue / 10000;
+    }
     NSInteger yDivideValue = maxValue/(self.yLabelViews.count + 1);
     for (int i = 0; i < self.yLabelViews.count; i++) {
         UILabel *yLabel = self.yLabelViews[self.yLabelViews.count - 1 - i];
@@ -307,7 +307,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     //获取Y轴最大值
     NSInteger yAxisMaxValue = [self getAxisMaxValue:yMaxValue];
     //重新计算Y轴数据
-    [self setYMaxValue:yAxisMaxValue > 10000 ? yAxisMaxValue/10000 : yAxisMaxValue];
+    [self setYMaxValue:yAxisMaxValue];
     //计算进度条宽度
     CGFloat progressViewWidth = (self.bounds.size.width - LeftSpace - RightSpace)*2/(yDatas.count*5);
     //计算X轴每等分宽度
@@ -359,7 +359,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     //获取Y轴最大值
     double yAxisMaxValue = [self getAxisMaxValue:yMaxValue];
     //重新计算Y轴数据
-    [self setYMaxValue:yAxisMaxValue > 10000 ? yAxisMaxValue/10000 : yAxisMaxValue];
+    [self setYMaxValue:yAxisMaxValue];
     //添加第一组数据
     if (firstYDatas.count > 0) {
         //计算进度条宽度
@@ -488,7 +488,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
         //获取Y轴最大值
         maxValue = [self getAxisMaxValue:maxNum];
         //重新计算Y轴数据
-        [self setYMaxValue:maxValue > 10000 ? maxValue/10000 : maxValue];
+        [self setYMaxValue:maxValue];
     }
     JKLineView *lineView = [[JKLineView alloc] initLineViewWithFrame:self.bounds pointDatas:pointDatas maxValue:maxValue pointColor:pointColor ? : [UIColor whiteColor] lineColor:lineColor ? : [UIColor whiteColor] lineWidth:lineWidth valueTextColor:valueTextColor ? : [UIColor whiteColor] showValueText:isShow edgeInset:UIEdgeInsetsMake(0, LeftSpace, BottomSpace, RightSpace)];
     [self addSubview:lineView];
