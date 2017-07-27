@@ -253,6 +253,12 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     return sum;
 }
 
+/**
+ 计算Y轴整形最大值
+
+ @param yMaxValue
+ @return Y轴最大值
+ */
 - (NSInteger)getAxisMaxValue:(double)yMaxValue {
     NSInteger maxLen = [self getInterLength:(NSInteger)yMaxValue];
     NSInteger firstNum = (NSInteger)yMaxValue/pow(10, maxLen - 1);
@@ -267,6 +273,11 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
 
 #pragma mark - public method
 
+/**
+ 设置Y轴数值
+
+ @param maxValue Y轴最大值
+ */
 - (void)setYMaxValue:(double)maxValue {
     _yMaxValue = maxValue;
     NSInteger yDivideValue = maxValue/(self.yLabelViews.count + 1);
