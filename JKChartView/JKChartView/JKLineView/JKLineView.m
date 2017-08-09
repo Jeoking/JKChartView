@@ -48,7 +48,7 @@ static const CGFloat ValueLabelSize = 8;
         NSMutableArray *points = [NSMutableArray array];
         for (int i = 0; i < pointDatas.count; i++) {
             NSNumber *yValue = pointDatas[i];
-            CGPoint point = CGPointMake(divideWidth * i + edgeInset.left + divideWidth/2, (self.bounds.size.height - edgeInset.bottom)*(1 - [yValue doubleValue]/maxValue));
+            CGPoint point = CGPointMake(divideWidth * i + edgeInset.left + divideWidth/2, maxValue > 0 ? (self.bounds.size.height - edgeInset.bottom)*(1 - [yValue floatValue]/maxValue) : (self.bounds.size.height - edgeInset.bottom));
             [points addObject:[NSValue valueWithCGPoint:point]];
             if (i == 0) {
                 [linePath moveToPoint:point];
@@ -83,7 +83,7 @@ static const CGFloat ValueLabelSize = 8;
             UILabel *valueLabel = [[UILabel alloc] init];
             [self addSubview:valueLabel];
             valueLabel.hidden = !isShow;
-            valueLabel.text = [NSString stringWithFormat:@"%.1f", [pointDatas[idx] doubleValue]];
+            valueLabel.text = [NSString stringWithFormat:@"%.1f", [pointDatas[idx] doubleValue]*maxValue];
             valueLabel.textColor = valueTextColor;
             valueLabel.font = [UIFont systemFontOfSize:ValueLabelSize];
             valueLabel.textAlignment = NSTextAlignmentCenter;

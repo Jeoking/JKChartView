@@ -12,7 +12,7 @@
 #import "JKLineView.h"
 
 //图表左边间距
-static const CGFloat LeftSpace = 40;
+static const CGFloat LeftSpace = 48;
 //图表右边间距
 static const CGFloat RightSpace = 8;
 //图表底部间距
@@ -253,29 +253,21 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     return sum;
 }
 
-/**
- 计算Y轴整形最大值
-
- @param yMaxValue
- @return Y轴最大值
- */
 - (NSInteger)getAxisMaxValue:(double)yMaxValue {
     NSInteger maxLen = [self getInterLength:(NSInteger)yMaxValue];
     NSInteger firstNum = (NSInteger)yMaxValue/pow(10, maxLen - 1);
     NSInteger maxValue = (firstNum + 1) * pow(10, maxLen - 1);
+    
     return maxValue;
 }
 
+
+
 #pragma mark - public method
 
-/**
- 设置Y轴数值
-
- @param maxValue Y轴最大值
- */
 - (void)setYMaxValue:(double)maxValue {
     _yMaxValue = maxValue;
-    if (maxValue > 10000) {
+    if (maxValue >= 10000) {
         maxValue = maxValue / 10000;
     }
     double yDivideValue = maxValue/(self.yLabelViews.count + 1);
@@ -315,7 +307,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
     for (int i = 0; i < yDatas.count; i++) {
         NSNumber *yValue = yDatas[i];
         JKProgressView *progressView = [[JKProgressView alloc] initVerticalProgressWithFrame:CGRectMake(divideWidth * i + LeftSpace, 0, progressViewWidth, self.bounds.size.height - BottomSpace) bgColor:[UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:0.1] progressColor:progressColor progressText:[NSString stringWithFormat:@"%.1f", [yValue doubleValue]]];
-        progressView.verticalProgress = [yValue doubleValue]/yAxisMaxValue;
+        progressView.verticalProgress = yAxisMaxValue > 0 ? [yValue doubleValue]/yAxisMaxValue : 0;
         progressView.progressTextColor = progressTextColor ? : [UIColor whiteColor];
         progressView.showProgressText = isShow;
         [self addSubview:progressView];
@@ -369,7 +361,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
         for (int i = 0; i < firstYDatas.count; i++) {
             NSNumber *yValue = firstYDatas[i];
             JKProgressView *progressView = [[JKProgressView alloc] initVerticalProgressWithFrame:CGRectMake(divideWidth * i + LeftSpace, 0, progressViewWidth, self.bounds.size.height - BottomSpace) bgColor:[UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:0.1] progressColor:firstProgressColor progressText:[NSString stringWithFormat:@"%.1f", [yValue doubleValue]]];
-            progressView.verticalProgress = [yValue doubleValue]/yAxisMaxValue;
+            progressView.verticalProgress = yAxisMaxValue > 0 ? [yValue doubleValue]/yAxisMaxValue : 0;
             progressView.progressTextColor = progressTextColor;
             progressView.showProgressText = isShow;
             [self addSubview:progressView];
@@ -393,7 +385,7 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
         for (int i = 0; i < secondYDatas.count; i++) {
             NSNumber *yValue = secondYDatas[i];
             JKProgressView *progressView = [[JKProgressView alloc] initVerticalProgressWithFrame:CGRectMake(divideWidth * i + LeftSpace + progressViewWidth, 0, progressViewWidth, self.bounds.size.height - BottomSpace) bgColor:[UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:0.1] progressColor:secondProgressColor progressText:[NSString stringWithFormat:@"%.1f", [yValue doubleValue]]];
-            progressView.verticalProgress = [yValue doubleValue]/yAxisMaxValue;
+            progressView.verticalProgress = yAxisMaxValue > 0 ? [yValue doubleValue]/yAxisMaxValue : 0;
             progressView.progressTextColor = progressTextColor;
             progressView.showProgressText = isShow;
             [self addSubview:progressView];
@@ -446,9 +438,9 @@ static const CGFloat ProgressColorInfoViewWidth = 110.0;
         double xValue = [xDatas[i] doubleValue];
         NSString *prgressText;
         if (xValue > 10000) {
-            prgressText = [NSString stringWithFormat:@"%.2f", xValue/10000];
+            prgressText = [NSString stringWithFormat:@"%.2f万", xValue/10000];
         } else {
-            prgressText = [NSString stringWithFormat:@"%.2f", xValue];
+            prgressText = [NSString stringWithFormat:@"%.2f元", xValue];
         }
         JKProgressView *progressView;
         if (progressLineCapType == JKProgressRoundType) {
